@@ -1,1068 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Press Brief — Meinhardt Initiative · Interregnum Nullificans 2006–2026</title>
+
+<title>Meinhardt Initiative — Interregnum Nullificans 2006–2026</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1510;
-    --ink-light: #3d3328;
-    --ink-faint: #7a6e62;
-    --paper: #f5f0e8;
-    --paper-warm: #ede6d6;
-    --paper-deep: #e0d8c8;
-    --rule: #c8b89a;
-    --rule-light: #ddd4c0;
-    --accent: #8b1a1a;
-    --accent-pale: #c8503a;
-    --gold: #9a7a2a;
-    --gold-light: #c8a84a;
-  }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Cinzel:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 
-  html { font-size: 16px; }
+<link rel="stylesheet" href="styles.css">
 
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.05rem;
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── PAGE CHROME ─────────────────────────────── */
-
-  .page-rule-top {
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 50%, var(--accent) 100%);
-  }
-
-  .masthead {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 3.5rem 5vw 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .masthead::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(255,255,255,0.015) 2px,
-      rgba(255,255,255,0.015) 4px
-    );
-    pointer-events: none;
-  }
-
-  .masthead-kicker {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .masthead-kicker::before {
-    content: '';
-    display: inline-block;
-    width: 2.5rem;
-    height: 1px;
-    background: var(--gold-light);
-  }
-
-  .masthead h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.8rem, 4.5vw, 3.4rem);
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: 0.02em;
-    color: var(--paper);
-    max-width: 820px;
-    margin-bottom: 0.4rem;
-  }
-
-  .masthead-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    font-style: italic;
-    color: var(--rule);
-    margin-bottom: 2.2rem;
-    letter-spacing: 0.01em;
-  }
-
-  .masthead-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    border-top: 1px solid rgba(255,255,255,0.12);
-    padding-top: 1.5rem;
-  }
-
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .meta-label {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    opacity: 0.75;
-  }
-
-  .meta-value {
-    font-family: 'EB Garamond', serif;
-    font-size: 0.95rem;
-    color: var(--paper);
-  }
-
-  .meta-value.live {
-    color: var(--accent-pale);
-    font-weight: 500;
-  }
-
-  /* ── LAYOUT ─────────────────────────────────── */
-
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 5vw;
-  }
-
-  .body-copy {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  /* ── SECTIONS ────────────────────────────────── */
-
-  section {
-    padding: 3.5rem 0;
-    border-bottom: 1px solid var(--rule-light);
-    animation: fadeUp 0.6s ease both;
-  }
-
-  section:last-of-type { border-bottom: none; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  section:nth-child(1) { animation-delay: 0.05s; }
-  section:nth-child(2) { animation-delay: 0.12s; }
-  section:nth-child(3) { animation-delay: 0.19s; }
-  section:nth-child(4) { animation-delay: 0.26s; }
-  section:nth-child(5) { animation-delay: 0.33s; }
-  section:nth-child(6) { animation-delay: 0.40s; }
-  section:nth-child(7) { animation-delay: 0.47s; }
-
-  .section-number {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.64rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 0.6rem;
-  }
-
-  h2 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1rem, 2.2vw, 1.35rem);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 500;
-    font-style: italic;
-    color: var(--ink-light);
-    margin: 1.8rem 0 0.6rem;
-  }
-
-  p {
-    max-width: 72ch;
-    margin-bottom: 1.1rem;
-    color: var(--ink-light);
-  }
-
-  p:last-of-type { margin-bottom: 0; }
-
-  strong {
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  em { font-style: italic; }
-
-  /* ── LEAD / PRÉCIS ───────────────────────────── */
-
-  .lead {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.15rem, 2vw, 1.45rem);
-    font-weight: 300;
-    line-height: 1.65;
-    color: var(--ink);
-    max-width: 72ch;
-    border-left: 3px solid var(--accent);
-    padding-left: 1.6rem;
-    margin-bottom: 0;
-  }
-
-  /* ── PULL QUOTE ──────────────────────────────── */
-
-  blockquote {
-    background: var(--paper-warm);
-    border-left: 3px solid var(--gold);
-    padding: 1.4rem 1.8rem;
-    margin: 2rem 0;
-    max-width: 68ch;
-  }
-
-  blockquote p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-  }
-
-  blockquote cite {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    font-style: normal;
-  }
-
-  /* ── LOOP DIAGRAM ────────────────────────────── */
-
-  .loop-diagram {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    margin: 2rem 0;
-    border: 1px solid var(--rule);
-  }
-
-  .loop-stage {
-    flex: 1 1 160px;
-    padding: 1.2rem 1.1rem;
-    border-right: 1px solid var(--rule);
-    position: relative;
-    background: var(--paper);
-    transition: background 0.2s;
-  }
-
-  .loop-stage:hover { background: var(--paper-warm); }
-
-  .loop-stage:last-child { border-right: none; }
-
-  .loop-stage-n {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 0.4rem;
-  }
-
-  .loop-stage-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--ink);
-    display: block;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-  }
-
-  .loop-stage-desc {
-    font-size: 0.82rem;
-    line-height: 1.55;
-    color: var(--ink-faint);
-    margin: 0;
-  }
-
-  .loop-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.6rem;
-    background: var(--paper-deep);
-    border-top: 1px solid var(--rule);
-  }
-
-  .loop-arrow span {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  /* ── TERM TABLE ──────────────────────────────── */
-
-  .term-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    border: 1px solid var(--rule);
-    margin: 1.8rem 0;
-  }
-
-  .term-row {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    border-bottom: 1px solid var(--rule-light);
-  }
-
-  .term-row:last-child { border-bottom: none; }
-
-  .term-name {
-    padding: 0.9rem 1rem;
-    background: var(--paper-warm);
-    border-right: 1px solid var(--rule-light);
-    font-family: 'Cinzel', serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--ink);
-    display: flex;
-    align-items: flex-start;
-    padding-top: 1rem;
-  }
-
-  .term-def {
-    padding: 0.9rem 1.1rem;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--ink-light);
-    margin: 0;
-  }
-
-  .term-irish {
-    display: block;
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 0.72rem;
-    color: var(--gold);
-    margin-top: 0.2rem;
-    font-weight: 400;
-  }
-
-  /* ── HYPOTHESES ──────────────────────────────── */
-
-  .hypothesis-set {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin: 1.8rem 0;
-  }
-
-  .hypothesis {
-    background: var(--paper);
-    padding: 1.4rem 1.2rem;
-    transition: background 0.2s;
-  }
-
-  .hypothesis:hover { background: var(--paper-warm); }
-
-  .hypothesis-label {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .hypothesis-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    display: block;
-    margin-bottom: 0.6rem;
-    text-transform: uppercase;
-  }
-
-  .hypothesis p {
-    font-size: 0.88rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .hypothesis-shared {
-    background: var(--paper-deep);
-    padding: 1.1rem 1.2rem;
-    grid-column: 1 / -1;
-    border-top: 1px solid var(--rule);
-  }
-
-  .hypothesis-shared p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--ink);
-    text-align: center;
-    margin: 0;
-    max-width: none;
-  }
-
-  /* ── STATUS TABLE ────────────────────────────── */
-
-  .status-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid var(--rule);
-    margin: 1.8rem 0;
-    font-size: 0.88rem;
-  }
-
-  .status-table th {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    background: var(--paper-deep);
-    padding: 0.7rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--rule);
-    font-weight: 400;
-  }
-
-  .status-table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--rule-light);
-    color: var(--ink-light);
-    line-height: 1.45;
-    vertical-align: top;
-  }
-
-  .status-table tr:last-child td { border-bottom: none; }
-
-  .status-table tr:hover td { background: var(--paper-warm); }
-
-  .status-table td:first-child {
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.03em;
-    color: var(--ink);
-    font-weight: 500;
-    min-width: 180px;
-    text-transform: uppercase;
-  }
-
-  .badge {
-    display: inline-block;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    margin-left: 0.4rem;
-    vertical-align: middle;
-  }
-
-  .badge-live { background: #3a0a0a; color: #e87070; }
-  .badge-prep { background: #2a1a0a; color: #c89050; }
-  .badge-pending { background: #0a1a2a; color: #5090c8; }
-
-  /* ── LEGAL INSTRUMENTS ───────────────────────── */
-
-  .instrument-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1px;
-    background: var(--rule-light);
-    border: 1px solid var(--rule-light);
-    margin: 1.8rem 0;
-  }
-
-  .instrument {
-    background: var(--paper);
-    padding: 1rem 1.1rem;
-  }
-
-  .instrument-name {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 0.3rem;
-    letter-spacing: 0.04em;
-  }
-
-  .instrument p {
-    font-size: 0.85rem;
-    line-height: 1.55;
-    color: var(--ink-faint);
-    margin: 0;
-  }
-
-  /* ── PARADOX CALLOUT ─────────────────────────── */
-
-  .paradox-box {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.2rem 2rem;
-    margin: 2.2rem 0;
-    position: relative;
-  }
-
-  .paradox-box::before {
-    content: 'STRUCTURAL CONFLICT OF INTEREST';
-    position: absolute;
-    top: -0.6rem;
-    left: 1.8rem;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    background: var(--ink);
-    color: var(--accent-pale);
-    padding: 0 0.6rem;
-  }
-
-  .paradox-box h3 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    font-weight: 500;
-    color: var(--paper);
-    letter-spacing: 0.04em;
-    margin: 0 0 1rem;
-    font-style: normal;
-    text-transform: uppercase;
-  }
-
-  .paradox-box p {
-    font-size: 1rem;
-    color: rgba(245,240,232,0.82);
-    max-width: 70ch;
-    line-height: 1.7;
-    margin-bottom: 0.8rem;
-  }
-
-  .paradox-date {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--gold-light);
-    margin-top: 0.8rem;
-    display: block;
-  }
-
-  /* ── MACHOL PRINCIPLE ────────────────────────── */
-
-  .machol {
-    background: var(--paper-warm);
-    padding: 2rem 2rem 1.8rem;
-    border: 1px solid var(--rule);
-    border-left: 4px solid var(--gold);
-    margin: 2rem 0;
-    max-width: 70ch;
-  }
-
-  .machol p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--ink);
-    margin-bottom: 0.8rem;
-    line-height: 1.65;
-    max-width: none;
-  }
-
-  .machol-attr {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.64rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    display: block;
-  }
-
-  /* ── FOOTER ─────────────────────────────────── */
-
-  .doc-footer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 2.8rem 5vw;
-    margin-top: 2rem;
-  }
-
-  .footer-grid {
-    max-width: 960px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2.5rem;
-  }
-
-  .footer-section-title {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    display: block;
-    margin-bottom: 0.8rem;
-    opacity: 0.75;
-  }
-
-  .footer-item {
-    font-size: 0.88rem;
-    color: rgba(245,240,232,0.7);
-    margin-bottom: 0.35rem;
-    line-height: 1.5;
-  }
-
-  .footer-item a {
-    color: rgba(245,240,232,0.7);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(200,168,74,0.3);
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .footer-item a:hover {
-    color: var(--paper);
-    border-color: var(--gold-light);
-  }
-
-  .footer-rule {
-    max-width: 960px;
-    margin: 0 auto;
-    border: none;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-  }
-
-  .footer-closing {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1rem;
-  }
-
-  .footer-irish {
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 0.9rem;
-    color: rgba(200,168,74,0.6);
-    max-width: 440px;
-    line-height: 1.6;
-  }
-
-  .footer-doc-id {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.22);
-  }
-
-  /* ── PRINT ───────────────────────────────────── */
-
-  @media print {
-    .page-rule-top { background: #000 !important; -webkit-print-color-adjust: exact; }
-    section { animation: none; }
-    .masthead { background: #000 !important; -webkit-print-color-adjust: exact; }
-    .paradox-box { background: #000 !important; -webkit-print-color-adjust: exact; }
-    .doc-footer { background: #000 !important; -webkit-print-color-adjust: exact; }
-  }
-
-  /* ── RESPONSIVE ──────────────────────────────── */
-
-  @media (max-width: 600px) {
-    .loop-stage { flex: 1 1 100%; border-right: none; border-bottom: 1px solid var(--rule); }
-    .term-row { grid-template-columns: 1fr; }
-    .term-name { border-right: none; border-bottom: 1px solid var(--rule-light); }
-    .status-table td:first-child { min-width: unset; }
-  }
-</style>
 </head>
+
 <body>
+
 
 <div class="page-rule-top"></div>
 
+
 <header class="masthead">
-  <div class="container">
-    <p class="masthead-kicker">Press Information · Restricted Distribution · March 2026</p>
-    <h1>The Meinhardt Initiative</h1>
-    <p class="masthead-sub">Interregnum Nullificans · 2006–2026 · Nineteen Years Without Determination</p>
-    <div class="masthead-meta">
-      <div class="meta-item">
-        <span class="meta-label">Researcher</span>
-        <span class="meta-value">Brøek Meinhardt, O.R. (Independent)</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Status</span>
-        <span class="meta-value live">Pre-Litigation · EU Escalation Active</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Hard Deadline</span>
-        <span class="meta-value live">Ireland EU Presidency · 1 July 2026</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Public Repository</span>
-        <span class="meta-value">github.com/dr-crunch/nullification-loops</span>
-      </div>
-    </div>
-  </div>
+
+<div class="container">
+
+<p class="masthead-kicker">
+Press Information · Restricted Distribution · March 2026
+</p>
+
+<h1>The Meinhardt Initiative</h1>
+
+<p class="masthead-sub">
+Interregnum Nullificans · 2006–2026 · Nineteen Years Without Determination
+</p>
+
+<div class="masthead-meta">
+
+<div class="meta-item">
+<span class="meta-label">Researcher</span>
+<span class="meta-value">Brøek Meinhardt · Operations Research</span>
+</div>
+
+<div class="meta-item">
+<span class="meta-label">Status</span>
+<span class="meta-value live">Pre-Litigation · EU Escalation Active</span>
+</div>
+
+<div class="meta-item">
+<span class="meta-label">Hard Deadline</span>
+<span class="meta-value live">Ireland EU Presidency · 1 July 2026</span>
+</div>
+
+<div class="meta-item">
+<span class="meta-label">Repository</span>
+<span class="meta-value">
+<a href="https://github.com/dr-crunch/nullification-loops" target="_blank">
+github.com/dr-crunch/nullification-loops
+</a>
+</span>
+</div>
+
+</div>
+
+</div>
+
 </header>
 
+
 <main class="container">
-  <div class="body-copy">
 
-    <!-- I. PRÉCIS -->
-    <section>
-      <span class="section-number">I · Précis</span>
-      <h2>What This Record Is</h2>
+<section>
 
-      <p class="lead">
-        The Meinhardt Initiative documents a nineteen-year failure of the Irish State — across six Taoisigh, four governments, and multiple statutory authorities — to evaluate, determine, or formally respond to a body of Operations Research materials first submitted in 2006.
-      </p>
+<h2>Précis</h2>
 
-      <p>The failure is not bureaucratic delay. The record demonstrates a closed administrative system — termed the <strong>Nullification Loop</strong> — whose output has been invariant through every change of personnel and government: no determination. The record carries live pre-litigation status in the Irish High Court, an active parallel complaint to the European Ombudsman, and a prepared filing at the Court of Justice of the European Union. Ireland's assumption of the EU Council Presidency on 1 July 2026 constitutes a structural deadline: the State cannot simultaneously hold Presidency and carry a nineteen-year zero-determination record under EU Regulation 2021/821 without that contradiction entering the European institutional record.</p>
+<p class="lead">
 
-      <div class="machol">
-        <p>"The conclusions of most good Operations Research studies are obvious."</p>
-        <span class="machol-attr">— Robert Machol · The Machol Principle</span>
-      </div>
+The Meinhardt Initiative documents a nineteen-year failure of the Irish State to evaluate, determine, or formally respond to Operations Research materials first submitted in 2006.
 
-      <p>The conclusions of the Interregnum Nullificans have been obvious for years. The operative question is not whether the conclusions are obvious. It is why, being obvious, they have not been acted on.</p>
-    </section>
+</p>
 
-    <!-- II. THE LOOP -->
-    <section>
-      <span class="section-number">II · Architecture of Failure</span>
-      <h2>The Nullification Loop — Lúba Neamhnithe</h2>
+<p>
 
-      <p>Every contact between the petitioner and the Irish State across nineteen years has resolved through one of five stages, regardless of which department, minister, or official received the submission. The sequence is systemic, not accidental; the personnel is interchangeable, the output is not.</p>
+Across six Taoisigh and multiple statutory authorities, the administrative output has remained invariant: **no determination**.
 
-      <div class="loop-diagram">
-        <div class="loop-stage">
-          <span class="loop-stage-n">Stage 1</span>
-          <span class="loop-stage-title">Acknowledgement</span>
-          <p class="loop-stage-desc">Formal receipt recorded. Engagement language used. No substantive analysis initiated.</p>
-        </div>
-        <div class="loop-stage">
-          <span class="loop-stage-n">Stage 2</span>
-          <span class="loop-stage-title">Deferral</span>
-          <p class="loop-stage-desc">Matter characterised as requiring consideration by another body. No destination confirmed. No timetable given.</p>
-        </div>
-        <div class="loop-stage">
-          <span class="loop-stage-n">Stage 3</span>
-          <span class="loop-stage-title">Remit Displacement</span>
-          <p class="loop-stage-desc">Responsibility assigned outward. Receiving authority assigns it outward in turn. Jurisdictional evaporation is the structural outcome.</p>
-        </div>
-        <div class="loop-stage">
-          <span class="loop-stage-n">Stage 4</span>
-          <span class="loop-stage-title">Sufficiency Assertion</span>
-          <p class="loop-stage-desc">Adequacy of existing methods claimed without evaluation of submitted materials. No comparison conducted. No determination issued.</p>
-        </div>
-        <div class="loop-stage">
-          <span class="loop-stage-n">Stage 5</span>
-          <span class="loop-stage-title">Record Suppression</span>
-          <p class="loop-stage-desc">Prior correspondence not acknowledged in subsequent contacts. Acute form: active deletion of formally received materials (JCEUA, October 2025).</p>
-        </div>
-      </div>
+</p>
 
-      <div class="loop-arrow">
-        <span>↺ Output invariant: no determination · Loop resets · Next officer begins at Stage 1</span>
-      </div>
+<p>
 
-      <p>This architecture does not require bad faith at any individual stage. Each officer performs a locally rational act — acknowledgement, deferral, reference — which combines at the system level into sustained non-determination. The Loop has operated through six Taoisigh without producing a single substantive evaluation of the submitted materials.</p>
-    </section>
+The record describes a closed administrative system termed the
+<a href="docs/nullification-loop.md" data-doc>
+Nullification Loop
+</a>.
 
-    <!-- III. THE PARADOX -->
-    <section>
-      <span class="section-number">III · The Presidency Paradox</span>
-      <h2>Structural Conflict of Interest · 1 July 2026</h2>
+</p>
 
-      <div class="paradox-box">
-        <h3>The Presidency Paradox</h3>
-        <p>Ireland assumes the rotating Presidency of the Council of the European Union on 1 July 2026. The Department of Foreign Affairs — designated competent authority under EU Regulation 2021/821 on dual-use goods — holds a zero-determination record across all documented contacts from 2006 to the present date.</p>
-        <p>The State that chairs the Council's deliberations on rule of law, good governance, and strategic autonomy will do so while carrying a live pre-litigation record documenting systematic non-compliance with Art. 41 of the EU Charter of Fundamental Rights — the right to good administration — and a prepared CJEU filing asserting breach of Art. 2 TEU on rule of law as a foundational value.</p>
-        <p>This is not a reputational concern. It is a structural conflict of interest. It is on the institutional record.</p>
-        <span class="paradox-date">HARD DEADLINE · 1 JULY 2026 · 99 DAYS FROM DATE OF THIS BRIEF</span>
-      </div>
-    </section>
+</section>
 
-    <!-- IV. LEXICON -->
-    <section>
-      <span class="section-number">IV · Operative Lexicon</span>
-      <h2>Terms of Art — The Research Vocabulary</h2>
 
-      <p>The corpus names its mechanisms precisely. These terms are not metaphors; they are analytical categories used consistently across every document in the record. Press enquiries should use them in the same sense as they appear here.</p>
+<section>
 
-      <div class="term-grid">
-        <div class="term-row">
-          <div class="term-name">Interregnum Nullificans<span class="term-irish">—</span></div>
-          <p class="term-def">Master designation for the 2006–2026 epoch of unperformed statutory duty. The period during which the Irish State received, acknowledged, and failed to determine submissions of Operations Research materials carrying dual-use strategic significance. The Compendium and Nullification Loops publications document this record in full.</p>
-        </div>
-        <div class="term-row">
-          <div class="term-name">Nullification Loop<span class="term-irish">Lúba Neamhnithe</span></div>
-          <p class="term-def">The five-stage administrative system described above, whose output has been invariant across nineteen years and multiple governments. The Loop is the mechanism; the Interregnum Nullificans is the epoch it produced. Personnel-independent: it has not changed with changes of government, department, or individual officer.</p>
-        </div>
-        <div class="term-row">
-          <div class="term-name">Silence Veto</div>
-          <p class="term-def">Procedural silence functioning as a substantive adverse determination, rendered without hearing. A direct violation of Art. 41 CFR (right to be heard; duty to give reasons) on its face. The McEntee Foreclosure — DOD-MO-01201-2025, 4 February 2026 — constitutes the primary instance and the primary certiorari target.</p>
-        </div>
-        <div class="term-row">
-          <div class="term-name">Phainocracy<span class="term-irish">Dealraitheachas</span></div>
-          <p class="term-def">Governance through the preservation of appearances. Procedural theatre that mimics action — acknowledgements, referrals, committee notes — while sustaining the Loop. Distinct from evasion: Phainocracy performs engagement. The form of governance is intact; the substance has been replaced by its performance.</p>
-        </div>
-        <div class="term-row">
-          <div class="term-name">Evasocracy<span class="term-irish">Séachanachas</span></div>
-          <p class="term-def">Active management of institutional silence to avoid statutory obligations. Governance through systematic non-decision. The Evasocracy does not refuse — refusal is on the record and subject to review. It does not act. The distinction is constitutional: non-action is not reviewable through the same mechanism as adverse decision.</p>
-        </div>
-        <div class="term-row">
-          <div class="term-name">Tortious Bureaucracy</div>
-          <p class="term-def">Active injury inflicted by absorbing strategic intelligence while obstructing its use. Four conditions are met in this record: receipt confirmed; retention without evaluation documented; demonstrable harm from non-deployment established; institutional capacity to act confirmed by the OEP's June 2025 assertion that OR methods are already in broad use across sectors.</p>
-        </div>
-        <div class="term-row">
-          <div class="term-name">Designed Forgetting</div>
-          <p class="term-def">Acute form of Administrative Amnesia. Active deletion of formally lodged correspondence. Documented: JCEUA, October 2025. The Joint Committee on European Union Affairs deleted a formally received submission from the institutional record. A direct violation of Art. 41 CFR — right of access to file.</p>
-        </div>
-        <div class="term-row">
-          <div class="term-name">The McGrath Dimension</div>
-          <p class="term-def">Commissioner for Rule of Law Michael McGrath was first notified as a Teachta Dála in March/April 2020. Non-response as Commissioner mirrors non-response as deputy. He now administers infringement procedures against Member States for rule of law failures. Three subsequent contacts as Commissioner: no response. The contradiction is structural, not personal.</p>
-        </div>
-      </div>
-    </section>
+<h2>Core Documents</h2>
 
-    <!-- V. THREE HYPOTHESES -->
-    <section>
-      <span class="section-number">V · Research Hypotheses</span>
-      <h2>The Three Readings — All Three Held Simultaneously</h2>
+<ul class="doclist">
 
-      <p>The corpus does not commit to a single characterisation of State conduct. Three readings are analytically available. All three are held co-present in every document. What all three share is material to the legal proceeding; where they diverge affects quantum, not liability.</p>
+<li>
+<a href="docs/compendium.md" data-doc>
+The Compendium
+</a>
+</li>
 
-      <div class="hypothesis-set">
-        <div class="hypothesis">
-          <span class="hypothesis-label">Hypothesis A</span>
-          <span class="hypothesis-title">Structural Non-Governance</span>
-          <p>The failure is architectural, not intentional. No individual bad faith required. The Hoop-Trick operates because no mechanism exists to maintain accountability across constitutional hoops under pressure. Administrative Amnesia is the emergent property of a system without institutional memory requirements. <em>Remedy: mandamus, damages, architectural reform.</em></p>
-        </div>
-        <div class="hypothesis">
-          <span class="hypothesis-label">Hypothesis B</span>
-          <span class="hypothesis-title">Misfeasance in Public Office</span>
-          <p>Named acts require examination against the bad-faith threshold: the Ballyphehane commitment (September 2009); Director O'Leary's written report undertaking (February 2009); the McEntee Foreclosure citing contested, unanswered conclusions; the JCEUA deletion of formally received correspondence (October 2025). <em>Remedy: as above, plus potential DPP referral.</em></p>
-        </div>
-        <div class="hypothesis">
-          <span class="hypothesis-label">Hypothesis C</span>
-          <span class="hypothesis-title">Epistemic Failure</span>
-          <p>Institutions not equipped to evaluate what was placed before them; performed the appearance of evaluation instead. The OEP thanking a nineteen-year correspondence for "raising awareness" is the paradigm case. Most charitable reading. Does not diminish legal consequences. <em>Remedy differs in quantum, not kind.</em></p>
-        </div>
-        <div class="hypothesis-shared">
-          <p>On every reading, the duty was not discharged. On every reading, the harm is established. On every reading, the remedy is available.</p>
-        </div>
-      </div>
-    </section>
+<li>
+<a href="docs/nullification-loop.md" data-doc>
+Nullification Loop
+</a>
+</li>
 
-    <!-- VI. LEGAL INSTRUMENTS -->
-    <section>
-      <span class="section-number">VI · Legal Framework</span>
-      <h2>Operative Instruments</h2>
+<li>
+<a href="docs/interregnum-nullificans.md" data-doc>
+Interregnum Nullificans
+</a>
+</li>
 
-      <div class="instrument-list">
-        <div class="instrument">
-          <span class="instrument-name">EU Reg. 2021/821 · Dual-Use Recast</span>
-          <p>DFA designated competent authority. Zero-determination record across nineteen years and four transposition cycles. Foundational EU-law ground of complaint.</p>
-        </div>
-        <div class="instrument">
-          <span class="instrument-name">Art. 41 CFR · Good Administration</span>
-          <p>Right to impartial, timely handling; right to be heard; right of access to file; duty to give reasons. Each limb independently violated across the record.</p>
-        </div>
-        <div class="instrument">
-          <span class="instrument-name">Art. 47 CFR · Effective Remedy</span>
-          <p>Structural capture of domestic review mechanism makes access to justice illusory in practice — directly engaging <em>Airey v Ireland</em> (App. 6289/73).</p>
-        </div>
-        <div class="instrument">
-          <span class="instrument-name">Art. 2 TEU · Rule of Law</span>
-          <p>Foundational value; sustained non-determination over nineteen years is incompatible with rule of law as a structural principle. CJEU filing prepared.</p>
-        </div>
-        <div class="instrument">
-          <span class="instrument-name">Order 84 RSC · Judicial Review</span>
-          <p>Certiorari: quash McEntee Foreclosure (DOD-MO-01201-2025). Mandamus: compel determination. Three irrationality grounds under <em>O'Keeffe v An Bord Pleanála</em> [1993]. Reasons failure under <em>Meadows v Minister for Justice</em> [2010].</p>
-        </div>
-        <div class="instrument">
-          <span class="instrument-name">Ethics in Public Office Act 1995 s.8(3)</span>
-          <p>Simultaneous frivolous-and-vexatious determinations, both Houses, 10 September 2025. Ultra vires: persuasion standard absent from statute. Procedural Foreclosure on its face.</p>
-        </div>
-        <div class="instrument">
-          <span class="instrument-name">Art. 228 TFEU · Ombudsman</span>
-          <p>European Ombudsman complaint in preparation. Parallel track to CJEU filing. Captures Art. 41 CFR violations independently of domestic review outcome.</p>
-        </div>
-        <div class="instrument">
-          <span class="instrument-name">Art. 40.3 Bunreacht · Personal Rights</span>
-          <p>Positive duty to vindicate personal rights; continuously breached during every period of non-evaluation. The duty is not discharged by recording the failure to discharge it.</p>
-        </div>
-      </div>
-    </section>
+<li>
+<a href="docs/phainocracy.md" data-doc>
+Phainocracy
+</a>
+</li>
 
-    <!-- VII. LIVE STATUS -->
-    <section>
-      <span class="section-number">VII · Live Status · March 2026</span>
-      <h2>Current Tracks</h2>
+<li>
+<a href="docs/evasocracy.md" data-doc>
+Evasocracy
+</a>
+</li>
 
-      <table class="status-table">
-        <thead>
-          <tr>
-            <th>Track</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>McEntee Foreclosure<br><small style="font-family:monospace;font-size:0.7rem;color:#7a6e62">DOD-MO-01201-2025</small></td>
-            <td>Primary certiorari target. Three irrationality grounds under <em>O'Keeffe</em>: (1) Silence Veto without hearing; (2) reliance on contested, unanswered OEP conclusions; (3) OEP 2009/2025 internal contradiction unremarked. Meadows reasons-failure independent ground. <span class="badge badge-live">Live</span></td>
-          </tr>
-          <tr>
-            <td>High Court<br>Judicial Review</td>
-            <td>Mandamus (compel performance of statutory duty) and certiorari (quash Foreclosure). Pleadings in preparation. Order 84 RSC. <span class="badge badge-prep">In Preparation</span></td>
-          </tr>
-          <tr>
-            <td>European Ombudsman</td>
-            <td>Formal complaint in preparation. Art. 41 CFR violations as primary ground. Designed Forgetting (JCEUA, October 2025) as particularised breach. <span class="badge badge-prep">In Preparation</span></td>
-          </tr>
-          <tr>
-            <td>CJEU · Luxembourg</td>
-            <td>Prepared. Dual-use obligation; data sovereignty; Art. 2 TEU rule of law. Filed when domestic track exhausted or structurally foreclosed. <span class="badge badge-prep">Prepared</span></td>
-          </tr>
-          <tr>
-            <td>JCEUA<br>Joint Committee on EU Affairs</td>
-            <td>March 3rd resubmission pending response. Prior declination ref. JCEUA-I-57. Prior correspondence deleted from record (October 2025 — Designed Forgetting). <span class="badge badge-pending">Awaiting Response</span></td>
-          </tr>
-          <tr>
-            <td>JCPP<br>Joint Committee on PP</td>
-            <td>18 documented contacts. Zero replies. Not even automated acknowledgement. Silence Veto operating at committee level. <span class="badge badge-live">No Response</span></td>
-          </tr>
-          <tr>
-            <td>Commissioner McGrath</td>
-            <td>Non-responsive ×3 as Commissioner. Prior knowledge as TD established (March/April 2020). Now stewards EU infringement procedures on rule of law. The McGrath Dimension is on the institutional record. <span class="badge badge-live">No Response</span></td>
-          </tr>
-          <tr>
-            <td>8 Irish MEPs</td>
-            <td>Non-responsive. JCEUA has direct channels to all. Record of non-response formally noted. <span class="badge badge-live">No Response</span></td>
-          </tr>
-          <tr>
-            <td>Public Repository</td>
-            <td>github.com/dr-crunch/nullification-loops · 14 EU languages · Open access <span class="badge badge-live">Active</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+</ul>
 
-    <!-- VIII. FOR THE PRESS -->
-    <section>
-      <span class="section-number">VIII · For Press</span>
-      <h2>What Press Coverage Adds to the Record</h2>
+</section>
 
-      <p>Every act of journalism that places the Interregnum Nullificans on the public record performs a function the Loop cannot absorb: it creates a contemporaneous third-party account, independent of any party's characterisation, at the moment when the structural contradiction is most acute. The Presidency Paradox, by its nature, resolves on 1 July 2026 — either before the Presidency begins, or during it.</p>
 
-      <p>Three questions the record places before any editor:</p>
+<section>
 
-      <blockquote>
-        <p>How does a State administration carry a nineteen-year zero-determination record on a formal statutory submission while simultaneously preparing to chair EU rule-of-law deliberations?</p>
-        <cite>The Presidency Paradox — structural framing</cite>
-      </blockquote>
+<h2>Research Context</h2>
 
-      <blockquote>
-        <p>When two parliamentary committees — each characterising accountability as belonging to the other — both default under pressure, which organ of the State remains responsible for the duty that was never discharged?</p>
-        <cite>The Hoop-Trick — constitutional framing</cite>
-      </blockquote>
+<p>
 
-      <blockquote>
-        <p>What is the institutional significance of a Commissioner administering EU rule-of-law infringement procedures against Member States, whose documented record as a national parliamentarian demonstrates the pattern of non-response he is now charged with sanctioning in others?</p>
-        <cite>The McGrath Dimension — EU governance framing</cite>
-      </blockquote>
+The corpus situates the Irish administrative record within a broader analytical vocabulary:
 
-      <p>The full Compendium, the Nullification Loops documentation, and all primary source materials are available without restriction at the public repository. Correspondence from press should be directed through the repository contact.</p>
+</p>
 
-      <p style="margin-top:1.5rem; font-family:'Source Code Pro',monospace; font-size:0.8rem; letter-spacing:0.08em; color:var(--accent);">github.com/dr-crunch/nullification-loops</p>
-    </section>
+<ul class="doclist">
 
-  </div>
+<li>
+<a href="docs/tortious-bureaucracy.md" data-doc>
+Tortious Bureaucracy
+</a>
+</li>
+
+<li>
+<a href="docs/designed-forgetting.md" data-doc>
+Designed Forgetting
+</a>
+</li>
+
+<li>
+<a href="docs/silence-veto.md" data-doc>
+Silence Veto
+</a>
+</li>
+
+</ul>
+
+</section>
+
+
 </main>
 
+
 <footer class="doc-footer">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-section-title">The Meinhardt Initiative</span>
-      <p class="footer-item">Brøek Meinhardt, Independent Researcher</p>
-      <p class="footer-item">Operations Research (O.R.)</p>
-      <p class="footer-item">Ireland · EU · International</p>
-    </div>
-    <div>
-      <span class="footer-section-title">Document Record</span>
-      <p class="footer-item">Interregnum Nullificans 2006–2026</p>
-      <p class="footer-item">Compendium · Nullification Loops</p>
-      <p class="footer-item">Pre-Litigation · EU Escalation Active</p>
-    </div>
-    <div>
-      <span class="footer-section-title">Escalation Channels</span>
-      <p class="footer-item">High Court of Ireland — Order 84 RSC</p>
-      <p class="footer-item">European Ombudsman — Art. 228 TFEU</p>
-      <p class="footer-item">CJEU — Art. 2 TEU / Reg. 2021/821</p>
-      <p class="footer-item">PETI Committee · European Parliament</p>
-    </div>
-    <div>
-      <span class="footer-section-title">Public Repository</span>
-      <p class="footer-item"><a href="https://github.com/dr-crunch/nullification-loops">github.com/dr-crunch/<br>nullification-loops</a></p>
-      <p class="footer-item" style="margin-top:0.6rem; font-size:0.78rem; opacity:0.6;">14 EU language versions · Open access</p>
-    </div>
-  </div>
-  <hr class="footer-rule">
-  <div class="footer-closing">
-    <p class="footer-irish">
-      Nuair a théann an fhírinne i bhfolach, tagann an bréag chun solais;<br>
-      nuair a chailltear an tsiocair, maireann an masla.
-    </p>
-    <span class="footer-doc-id">PRESS-BRIEF-2026-03 · Meinhardt Initiative · Interregnum Nullificans</span>
-  </div>
+
+<div class="container">
+
+<p class="footer-text">
+
+"Na déanaigí faillí sa bhfírinne."
+
+</p>
+
+<p class="footer-meta">
+
+Research archive · 2006–2026 · Meinhardt Initiative
+
+</p>
+
+</div>
+
 </footer>
 
+
+<!-- PANEL VIEWER -->
+
+<div id="panelBackdrop"></div>
+
+<div id="docPanel">
+
+<div id="panelHeader">
+
+<span id="panelTitle">Document</span>
+
+<span id="panelClose">✕</span>
+
+</div>
+
+<iframe id="panelFrame"></iframe>
+
+</div>
+
+
+<script>
+
+function openPanel(url,title){
+
+const panel=document.getElementById("docPanel");
+const frame=document.getElementById("panelFrame");
+const backdrop=document.getElementById("panelBackdrop");
+
+frame.src=url;
+document.getElementById("panelTitle").textContent=title;
+
+panel.classList.add("open");
+backdrop.classList.add("active");
+
+}
+
+function closePanel(){
+
+document.getElementById("docPanel").classList.remove("open");
+document.getElementById("panelBackdrop").classList.remove("active");
+
+}
+
+document.querySelectorAll("[data-doc]").forEach(link=>{
+
+link.addEventListener("click",function(e){
+
+e.preventDefault();
+
+openPanel(
+this.getAttribute("href"),
+this.textContent
+);
+
+});
+
+});
+
+document.getElementById("panelClose").onclick=closePanel;
+document.getElementById("panelBackdrop").onclick=closePanel;
+
+</script>
+
 </body>
+
 </html>
