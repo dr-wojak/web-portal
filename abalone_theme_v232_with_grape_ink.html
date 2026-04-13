@@ -1,0 +1,433 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0a0910;
+  --surface:#141018;--surface2:#1c1820;--surface3:#221e2a;
+  --parchment:#e8e3d4;--parchment-dim:#9e9887;--parchment-faint:#38303e;
+  --rule:rgba(200,180,230,0.09);--rule-strong:rgba(200,180,230,0.16);
+  --bordeaux:#b87898;--bordeaux-dim:#4a2838;--bordeaux-bg:#180d12;
+  --dragonfly:#5ab0c8;--dragonfly-dim:#183e4a;--dragonfly-bg:#0a1820;
+  --cosmic:#9898c8;--cosmic-dim:#404068;--cosmic-bg:#10101e;
+  --rivulet:#38c8b8;--rivulet-dim:#187868;--rivulet-bg:#081e1a;
+  --citron:#d4c06a;--citron-dim:#7a6e28;--citron-bg:#1c1a08;
+  --scarlet:#c8253a;--scarlet-lt:#e84060;--scarlet-dim:#7a1020;--scarlet-bg:#1a080a;
+  --grape:#6b2d8b;--grape-lt:#9b58c8;--grape-dim:#3a1050;--grape-bg:#12081a;
+  --gold:#c8a830;--gold-lt:#e8c850;--gold-dim:#7a6218;--gold-bg:#1a1608;
+  --sherwood:#1a7a48;--sherwood-lt:#38c878;--sherwood-dim:#0a3820;--sherwood-bg:#081a10;
+  --nantucket:#7ab8d8;--nantucket-dim:#2a5878;
+  --regatta:#3c5a9a;--regatta-lt:#6080c8;--regatta-dim:#1e2e58;--regatta-bg:#080e20;
+  --coral:#c87870;--coral-dim:#784038;
+  --satin:#c8bfa8;--satin-dim:#6e6858;
+  --sandstone:#d19162;--sandstone-lt:#f0a050;--sandstone-dim:#7a4020;--sandstone-bg:#1e0c06;
+  --stretch-limo:#28283a;
+  /* NACRE */
+  --usquebaugh:#ffe5d0;
+  --aqua-vitae:#edfff8;
+  --willow:#d5e9db;
+  --glaze:#edffff;
+  --quire:#fff6ff;
+  --laitance:#fefcfe;
+  --deckle:#dbccd7;
+  --deckle-dim:#c0acc1;
+  --cloud-dancer:#f0eee8;
+  /* AUGMENTED INKS */
+  --N-ink:var(--stretch-limo);
+  --N-ink-grape:#12081a;      /* deepest · most contrasting · violet-black */
+  --N-ink-bordeaux:#180d12;
+  --N-ink-cosmic:#10101e;
+  /* ABALONE THEME — local vars */
+  --AB-bg:var(--ink);
+  --AB-surface:#0e0c15;       /* slightly violet-shifted surface */
+  --AB-surface2:#15101e;
+  --AB-ink:#12081a;            /* N-ink-grape as primary text ink on light */
+  --AB-ink-dim:#28283a;        /* stretch-limo as secondary */
+  --AB-rule:rgba(192,172,193,0.1);
+  --AB-rule-strong:rgba(192,172,193,0.18);
+}
+body{background:var(--ink);color:var(--parchment);font-family:'IBM Plex Mono',monospace;font-size:13px;}
+
+.page{max-width:960px;margin:0 auto;padding:28px 22px 52px;}
+
+.eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--citron);margin-bottom:22px;display:flex;align-items:center;gap:10px;opacity:.8;}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--citron);opacity:.18;max-width:200px;}
+.section-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--parchment-faint);margin-bottom:12px;margin-top:36px;}
+.section-label-nacre{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--stretch-limo);opacity:.4;margin-bottom:12px;margin-top:28px;}
+
+/* ── ABALONE DARK SURFACE ── */
+.ab-dark{background:var(--AB-surface);border-radius:5px;overflow:hidden;margin-bottom:12px;position:relative;}
+.ab-dark-inner{padding:20px 22px;}
+
+/* ── ABALONE LIGHT SURFACE (nacre zone) ── */
+.ab-light{background:var(--cloud-dancer);border-radius:5px;overflow:hidden;margin-bottom:12px;position:relative;}
+.ab-light-inner{padding:20px 22px;}
+.ab-light-inner *{color:var(--AB-ink);}
+
+/* strike bars */
+.bar-thermal{height:3px;background:linear-gradient(90deg,#ffe5d0,#edffff 40%,#edfff8);}
+.bar-strata{height:3px;background:linear-gradient(90deg,#fefcfe,#fff6ff 28%,#dbccd7 68%,#c0acc1);}
+.bar-tricolour{height:3px;background:linear-gradient(90deg,#edfff8,#fefcfe 50%,#ffe5d0);}
+.bar-full{height:3px;background:linear-gradient(90deg,#f0eee8 0%,#edfff8 14%,#edffff 28%,#fefcfe 38%,#fff6ff 50%,#ffe5d0 62%,#d5e9db 76%,#dbccd7 88%,#c0acc1);}
+.bar-warm{height:3px;background:linear-gradient(90deg,#ffe5d0,#fff6ff 58%,#dbccd7);}
+.bar-violet{height:3px;background:linear-gradient(90deg,#fff6ff,#fefcfe 50%,#c0acc1);}
+
+/* the ink demonstration */
+.ink-well{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--AB-rule-strong);border:1px solid var(--AB-rule-strong);border-radius:4px;overflow:hidden;margin-bottom:16px;}
+.ink-cell{padding:16px 14px;display:flex;flex-direction:column;gap:6px;}
+.ink-cell-label{font-size:8px;letter-spacing:.14em;text-transform:uppercase;opacity:.5;}
+.ink-cell-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:300;line-height:1.15;}
+.ink-cell-hex{font-size:9px;letter-spacing:.04em;opacity:.55;}
+.ink-cell-role{font-family:'EB Garamond',Georgia,serif;font-size:12px;line-height:1.55;opacity:.65;font-style:italic;}
+.ink-cell-contrast{font-size:8px;letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+
+.ink-grape{background:#12081a;color:var(--cloud-dancer);}
+.ink-cosmic{background:#10101e;color:var(--cloud-dancer);}
+.ink-bordeaux{background:#180d12;color:var(--cloud-dancer);}
+.ink-limo{background:#28283a;color:var(--cloud-dancer);}
+
+.ink-grape .ink-cell-contrast{color:var(--grape-lt);opacity:.9;}
+.ink-cosmic .ink-cell-contrast{color:var(--cosmic);opacity:.9;}
+.ink-bordeaux .ink-cell-contrast{color:var(--bordeaux);opacity:.9;}
+.ink-limo .ink-cell-contrast{color:var(--satin);opacity:.9;}
+
+/* the chosen ink marker */
+.chosen-marker{display:inline-flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px 4px 8px;border-radius:3px;background:rgba(155,88,200,.12);border:1px solid rgba(155,88,200,.25);color:var(--grape-lt);margin-bottom:18px;}
+.chosen-dot{width:8px;height:8px;border-radius:50%;background:var(--grape-lt);flex-shrink:0;}
+
+/* abalone token ring */
+.ab-token-ring{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:3px;margin-bottom:6px;}
+.ab-token{border-radius:3px;overflow:hidden;}
+.ab-chip{height:52px;display:flex;flex-direction:column;justify-content:flex-end;padding:6px 8px;}
+.ab-chip-name{font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1.3;}
+.ab-chip-hex{font-size:9px;letter-spacing:.04em;font-weight:500;}
+.on-dark{color:rgba(240,238,232,.5);}
+.on-light{color:var(--AB-ink);opacity:.55;}
+
+/* abalone component demos */
+.ab-demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+
+/* DARK SIDE components */
+.ab-card-dark{background:var(--AB-surface2);border:1px solid var(--AB-rule-strong);border-radius:4px;overflow:hidden;}
+.ab-card-dark-inner{padding:16px 18px;}
+.ab-card-title-d{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:300;color:var(--parchment);margin-bottom:5px;line-height:1.25;}
+.ab-card-body-d{font-family:'EB Garamond',Georgia,serif;font-size:13px;color:var(--parchment-dim);line-height:1.65;}
+.ab-card-foot-d{font-size:8.5px;letter-spacing:.06em;color:var(--parchment-faint);margin-top:10px;border-top:1px solid var(--AB-rule);padding-top:8px;}
+
+/* LIGHT SIDE components — ink is grape-black */
+.ab-card-light{background:var(--cloud-dancer);border:0.5px solid rgba(40,40,58,.12);border-radius:4px;overflow:hidden;}
+.ab-card-light-inner{padding:16px 18px;}
+.ab-card-eyebrow-l{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#12081a;opacity:.38;margin-bottom:8px;}
+.ab-card-title-l{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:300;color:#12081a;margin-bottom:5px;line-height:1.25;}
+.ab-card-title-l em{font-style:italic;color:#3a1050;opacity:.75;}
+.ab-card-body-l{font-family:'EB Garamond',Georgia,serif;font-size:13px;color:#12081a;opacity:.62;line-height:1.65;}
+.ab-card-foot-l{font-size:8px;letter-spacing:.06em;color:#12081a;opacity:.28;margin-top:10px;border-top:0.5px solid rgba(40,40,58,.1);padding-top:8px;}
+
+/* nacre on dark: the lede border */
+.ab-lede-dark{border-left:2px solid var(--deckle);padding-left:18px;margin-bottom:14px;}
+.ab-lede-dark p{font-family:'EB Garamond',Georgia,serif;font-size:14px;color:var(--parchment);line-height:1.78;margin-bottom:.9em;}
+.ab-lede-dark p:last-child{margin-bottom:0;}
+
+/* nacre on light: the lede border */
+.ab-lede-light{border-left:2px solid var(--AB-ink);padding-left:18px;margin-bottom:14px;opacity:.7;}
+.ab-lede-light p{font-family:'EB Garamond',Georgia,serif;font-size:14px;color:var(--AB-ink);line-height:1.78;margin-bottom:.9em;}
+.ab-lede-light p:last-child{margin-bottom:0;}
+
+/* nacre badge */
+.ab-badge{display:inline-flex;align-items:center;gap:5px;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1px solid;}
+.ab-badge-usq{color:var(--usquebaugh);border-color:rgba(255,229,208,.25);background:rgba(255,229,208,.06);}
+.ab-badge-glaze{color:var(--glaze);border-color:rgba(237,255,255,.22);background:rgba(237,255,255,.05);}
+.ab-badge-deckle{color:var(--deckle);border-color:rgba(219,204,215,.25);background:rgba(219,204,215,.06);}
+.ab-badge-deckle-dim{color:var(--deckle-dim);border-color:rgba(192,172,193,.28);background:rgba(192,172,193,.07);}
+.ab-badge-laitance{color:var(--deckle-dim);border-color:rgba(192,172,193,.22);background:rgba(254,252,254,.06);}
+.ab-badge-willow{color:var(--willow);border-color:rgba(213,233,219,.22);background:rgba(213,233,219,.06);}
+.ab-badge-quire{color:var(--quire);border-color:rgba(255,246,255,.2);background:rgba(255,246,255,.05);}
+
+/* dark-palette lite borrowings */
+.ab-badge-grape-lt{color:var(--grape-lt);border-color:rgba(155,88,200,.28);background:rgba(155,88,200,.08);}
+.ab-badge-dragonfly{color:var(--dragonfly);border-color:rgba(90,176,200,.25);background:rgba(90,176,200,.06);}
+.ab-badge-cosmic{color:var(--cosmic);border-color:rgba(152,152,200,.25);background:rgba(152,152,200,.07);}
+.ab-badge-citron{color:var(--citron);border-color:rgba(212,192,106,.25);background:rgba(212,192,106,.06);}
+.ab-badge-rivulet{color:var(--rivulet);border-color:rgba(56,200,184,.22);background:rgba(56,200,184,.06);}
+.ab-badge-bordeaux{color:var(--bordeaux);border-color:rgba(184,120,152,.22);background:rgba(184,120,152,.07);}
+
+.ab-badge-light-grape{color:#12081a;border-color:rgba(40,40,58,.2);background:rgba(107,45,139,.08);}
+.ab-badge-light-reg{color:#12081a;border-color:rgba(40,40,58,.15);background:rgba(60,90,154,.08);}
+
+/* two-column layout with border */
+.ab-two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--AB-rule-strong);border:1px solid var(--AB-rule-strong);border-radius:5px;overflow:hidden;margin-bottom:20px;}
+.ab-col{padding:22px 20px;}
+.ab-col-dark{background:var(--AB-surface);}
+.ab-col-light{background:var(--cloud-dancer);}
+.ab-col-header{font-size:8px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid;}
+.ab-col-dark .ab-col-header{color:var(--parchment-faint);border-color:var(--AB-rule);}
+.ab-col-light .ab-col-header{color:#12081a;opacity:.3;border-color:rgba(40,40,58,.1);}
+
+/* lite-tone borrowings panel */
+.lite-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:3px;margin-bottom:6px;}
+.lite-cell{background:var(--AB-surface2);border:1px solid var(--AB-rule);border-radius:3px;padding:11px 12px;}
+.lite-cell-bar{height:2px;border-radius:0;margin-bottom:8px;}
+.lite-cell-name{font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.lite-cell-hex{font-size:9px;letter-spacing:.04em;opacity:.6;}
+.lite-cell-role{font-family:'EB Garamond',Georgia,serif;font-size:11px;color:var(--parchment-dim);font-style:italic;margin-top:3px;line-height:1.5;}
+
+/* the full Abalone spec block */
+.ab-spec{background:var(--AB-surface);border:1px solid var(--AB-rule-strong);border-top:none;border-radius:0 0 5px 5px;padding:24px 22px;position:relative;}
+.ab-spec::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#ffe5d0 0%,#edffff 22%,#edfff8 38%,#fefcfe 48%,#fff6ff 58%,#ffe5d0 68%,#d5e9db 78%,#dbccd7 88%,#c0acc1 100%);}
+.ab-spec-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;color:var(--parchment);margin-bottom:5px;line-height:1.15;}
+.ab-spec-title em{font-style:italic;color:var(--deckle);}
+.ab-spec-sub{font-family:'EB Garamond',Georgia,serif;font-size:14px;color:var(--parchment-dim);line-height:1.7;margin-bottom:18px;max-width:640px;}
+.ab-spec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.ab-spec-cell{background:var(--AB-surface2);border:1px solid var(--AB-rule);border-radius:3px;padding:12px 13px;}
+.ab-spec-cell-label{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchment-faint);margin-bottom:6px;}
+.ab-spec-cell-content{font-family:'EB Garamond',Georgia,serif;font-size:12.5px;color:var(--parchment-dim);line-height:1.6;}
+.ab-spec-note{font-size:8px;letter-spacing:.06em;color:var(--parchment-faint);margin-top:14px;border-top:1px solid var(--AB-rule);padding-top:10px;opacity:.65;line-height:1.8;}
+
+@media(max-width:580px){
+  .ink-well{grid-template-columns:1fr 1fr;}
+  .ab-demo-grid{grid-template-columns:1fr;}
+  .ab-two-col{grid-template-columns:1fr;}
+  .ab-spec-grid{grid-template-columns:1fr;}
+  .ab-token-ring{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+
+<div class="page">
+
+<div class="eyebrow">Abalone theme · v2.32 · grape-black ink added</div>
+
+<div class="section-label">§ 01 · the four paper-layer inks — choosing the most contrasting</div>
+<div class="ink-well">
+  <div class="ink-cell ink-grape">
+    <div class="ink-cell-label">N-ink-grape</div>
+    <div class="ink-cell-name" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:300;">Grape-black</div>
+    <div class="ink-cell-hex">#12081a</div>
+    <div class="ink-cell-role">portal ancestry · violet undertone · deepest available</div>
+    <div class="ink-cell-contrast">vs cloud-dancer: ~19.4:1</div>
+  </div>
+  <div class="ink-cell ink-cosmic">
+    <div class="ink-cell-label">N-ink-cosmic</div>
+    <div class="ink-cell-name" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:300;">Cosmic-black</div>
+    <div class="ink-cell-hex">#10101e</div>
+    <div class="ink-cell-role">analytical ancestry · blue undertone</div>
+    <div class="ink-cell-contrast">vs cloud-dancer: ~18.9:1</div>
+  </div>
+  <div class="ink-cell ink-bordeaux">
+    <div class="ink-cell-label">N-ink-bordeaux</div>
+    <div class="ink-cell-name" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:300;">Rose-black</div>
+    <div class="ink-cell-hex">#180d12</div>
+    <div class="ink-cell-role">narrative ancestry · rose undertone</div>
+    <div class="ink-cell-contrast">vs cloud-dancer: ~18.1:1</div>
+  </div>
+  <div class="ink-cell ink-limo">
+    <div class="ink-cell-label">N-ink (stretch-limo)</div>
+    <div class="ink-cell-name" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:300;">Blue-black</div>
+    <div class="ink-cell-hex">#28283a</div>
+    <div class="ink-cell-role">constant · reference ink · print standard</div>
+    <div class="ink-cell-contrast">vs cloud-dancer: ~13.6:1</div>
+  </div>
+</div>
+
+<div class="chosen-marker"><div class="chosen-dot"></div>--N-ink-grape #12081a · selected · highest contrast · grape ancestry links to deckle-dim at the other pole</div>
+
+<div class="section-label">§ 02 · abalone token ring — nacre grounds + dark-palette lite-tones</div>
+<div class="ab-token-ring">
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#ffe5d0;"><div class="ab-chip-name" style="color:rgba(18,8,26,.5);">usquebaugh</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.65);">#ffe5d0</div></div></div>
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#edffff;"><div class="ab-chip-name" style="color:rgba(18,8,26,.5);">glaze</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.65);">#edffff</div></div></div>
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#edfff8;"><div class="ab-chip-name" style="color:rgba(18,8,26,.5);">aqua-vitae</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.65);">#edfff8</div></div></div>
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#fefcfe;"><div class="ab-chip-name" style="color:rgba(18,8,26,.45);">laitance</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.55);">#fefcfe</div></div></div>
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#fff6ff;"><div class="ab-chip-name" style="color:rgba(18,8,26,.45);">quire</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.55);">#fff6ff</div></div></div>
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#d5e9db;"><div class="ab-chip-name" style="color:rgba(18,8,26,.5);">willow</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.65);">#d5e9db</div></div></div>
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#dbccd7;"><div class="ab-chip-name" style="color:rgba(18,8,26,.5);">deckle</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.65);">#dbccd7</div></div></div>
+  <div class="ab-token"><div class="ab-chip on-dark" style="background:#c0acc1;"><div class="ab-chip-name" style="color:rgba(18,8,26,.5);">deckle-dim</div><div class="ab-chip-hex" style="color:rgba(18,8,26,.65);">#c0acc1</div></div></div>
+  <div class="ab-token" style="border:1px solid rgba(192,172,193,.2);border-radius:3px;overflow:hidden;"><div class="ab-chip" style="background:#12081a;"><div class="ab-chip-name on-dark" style="color:rgba(192,172,193,.55);">N-ink-grape</div><div class="ab-chip-hex on-dark" style="color:rgba(192,172,193,.7);">#12081a</div></div></div>
+</div>
+<div style="font-family:'EB Garamond',Georgia,serif;font-size:12px;color:var(--parchment-faint);margin-bottom:4px;font-style:italic;opacity:.7;">Eight nacre grounds + the grape-black ink. The grape ancestry connects: deckle-dim was pulled 15% toward grape-dim; the ink was drawn from grape-bg. The same thread, two ends.</div>
+
+<div class="section-label">§ 03 · dark-palette lite-tones borrowed into the abalone register</div>
+<div class="lite-grid">
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--grape-lt);"></div><div class="lite-cell-name" style="color:var(--grape-lt);">grape-lt</div><div class="lite-cell-hex" style="color:var(--grape-lt);">#9b58c8</div><div class="lite-cell-role">portal signal · the grape thread made visible</div></div>
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--dragonfly);"></div><div class="lite-cell-name" style="color:var(--dragonfly);">dragonfly</div><div class="lite-cell-hex" style="color:var(--dragonfly);">#5ab0c8</div><div class="lite-cell-role">legal-instrumental · the cool signal on dark</div></div>
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--cosmic);"></div><div class="lite-cell-name" style="color:var(--cosmic);">cosmic</div><div class="lite-cell-hex" style="color:var(--cosmic);">#9898c8</div><div class="lite-cell-role">analytical · blue-grey bridge to glaze</div></div>
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--citron);"></div><div class="lite-cell-name" style="color:var(--citron);">citron</div><div class="lite-cell-hex" style="color:var(--citron);">#d4c06a</div><div class="lite-cell-role">structure eyebrows · warm accent on dark</div></div>
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--rivulet);"></div><div class="lite-cell-name" style="color:var(--rivulet);">rivulet</div><div class="lite-cell-hex" style="color:var(--rivulet);">#38c8b8</div><div class="lite-cell-role">demonstrated · confirmed · bridges aqua-vitae</div></div>
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--bordeaux);"></div><div class="lite-cell-name" style="color:var(--bordeaux);">bordeaux</div><div class="lite-cell-hex" style="color:var(--bordeaux);">#b87898</div><div class="lite-cell-role">narrative · warm rose · bridges deckle-dim</div></div>
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--regatta-lt);"></div><div class="lite-cell-name" style="color:var(--regatta-lt);">regatta-lt</div><div class="lite-cell-hex" style="color:var(--regatta-lt);">#6080c8</div><div class="lite-cell-role">domain · bridges glaze + cosmic</div></div>
+  <div class="lite-cell"><div class="lite-cell-bar" style="background:var(--nantucket);"></div><div class="lite-cell-name" style="color:var(--nantucket);">nantucket</div><div class="lite-cell-hex" style="color:var(--nantucket);">#7ab8d8</div><div class="lite-cell-role">chain flow · bridges aqua-vitae on dark</div></div>
+</div>
+<div style="font-family:'EB Garamond',Georgia,serif;font-size:12px;color:var(--parchment-faint);margin-bottom:4px;font-style:italic;opacity:.7;">These are accent tones only — they appear as text colour, eyebrow tint, pip fill. Never as background fills in the Abalone register. The nacre grounds hold all fill decisions.</div>
+
+<div class="section-label">§ 04 · the theme in practice — dark and light surfaces side by side</div>
+
+<div class="ab-two-col">
+  <div class="ab-col ab-col-dark">
+    <div class="ab-col-header">Dark surface · --AB-surface #0e0c15</div>
+
+    <div class="ab-card-dark" style="margin-bottom:10px;">
+      <div class="bar-thermal"></div>
+      <div class="ab-card-dark-inner">
+        <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--deckle);opacity:.7;margin-bottom:6px;">abalone · thermal strike</div>
+        <div class="ab-card-title-d">Submission 2006–2025</div>
+        <div class="ab-card-body-d">Nineteen years of civic signal. Each acknowledgement a closure; each closure a null return against the directed graph.</div>
+        <div class="ab-card-foot-d">
+          <span class="ab-badge ab-badge-usq" style="margin-right:4px;">usquebaugh</span>
+          <span class="ab-badge ab-badge-glaze">glaze</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ab-card-dark" style="margin-bottom:10px;">
+      <div class="bar-warm"></div>
+      <div class="ab-card-dark-inner">
+        <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--citron);opacity:.7;margin-bottom:6px;">temporal register · warm arc</div>
+        <div class="ab-card-title-d">The Nullification Loop</div>
+        <div class="ab-card-body-d">Five moves. Acknowledge. Defer. Displace. Assert sufficiency. Reset. The colour of nineteen years waiting is amber through mauve.</div>
+        <div class="ab-card-foot-d">
+          <span class="ab-badge ab-badge-usq" style="margin-right:4px;">usquebaugh</span>
+          <span class="ab-badge ab-badge-deckle">deckle</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ab-lede-dark">
+      <p>The Abalone theme renders the corpus at its darkest register. The surface is shifted violet — #0e0c15, one step deeper than --ink, a quiet acknowledgement of the grape ancestry running through the system.</p>
+      <p>On this ground, the nacre strikes read at full iridescent intensity. Against near-black, near-white is everything.</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:5px;">
+      <span class="ab-badge ab-badge-grape-lt">grape-lt · portal signal</span>
+      <span class="ab-badge ab-badge-dragonfly">dragonfly · legal</span>
+      <span class="ab-badge ab-badge-cosmic">cosmic · analytical</span>
+      <span class="ab-badge ab-badge-citron">citron · structure</span>
+      <span class="ab-badge ab-badge-rivulet">rivulet · confirmed</span>
+      <span class="ab-badge ab-badge-bordeaux">bordeaux · narrative</span>
+      <span class="ab-badge ab-badge-deckle-dim">deckle-dim · bedrock</span>
+      <span class="ab-badge ab-badge-laitance">laitance · resolved</span>
+    </div>
+  </div>
+
+  <div class="ab-col ab-col-light">
+    <div class="ab-col-header">Light surface · --cloud-dancer #f0eee8 · ink: N-ink-grape #12081a</div>
+
+    <div class="ab-card-light" style="margin-bottom:10px;">
+      <div class="bar-tricolour"></div>
+      <div class="ab-card-light-inner">
+        <div class="ab-card-eyebrow-l">paper doctrine · tricolour arc</div>
+        <div class="ab-card-title-l">Tairiscint <em>Mheinhardt</em></div>
+        <div class="ab-card-body-l">Formal indictment in legal register. The grape-black ink on Cloud Dancer: the deepest violet-black carrying the portal ancestry into the document's body.</div>
+        <div class="ab-card-foot-l">N-ink-grape #12081a on cloud-dancer #f0eee8 · contrast ~19.4:1</div>
+      </div>
+    </div>
+
+    <div class="ab-card-light" style="background:#ffe5d0;margin-bottom:10px;">
+      <div class="bar-strata"></div>
+      <div class="ab-card-light-inner" style="background:transparent;">
+        <div class="ab-card-eyebrow-l">usquebaugh ground · body field</div>
+        <div class="ab-card-title-l">Formal <em>Complaint</em></div>
+        <div class="ab-card-body-l">Grape-black on Usquebaugh — the antiquarian register. Warm amber ground, deepest ink. The sustained argument.</div>
+        <div class="ab-card-foot-l">N-ink-grape #12081a on usquebaugh #ffe5d0 · formal submission register</div>
+      </div>
+    </div>
+
+    <div class="ab-lede-light">
+      <p>The grape-black ink on nacre grounds carries the portal ancestry into the document layer. The same genetic thread as deckle-dim — both derive from grape-dim.</p>
+      <p>Stretch-limo (#28283a) remains available as the secondary ink — lighter register, annotations, captions.</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:5px;">
+      <span class="ab-badge ab-badge-light-grape" style="color:#12081a;border-color:rgba(107,45,139,.2);background:rgba(107,45,139,.08);">grape-black · primary ink</span>
+      <span class="ab-badge" style="color:#28283a;border-color:rgba(40,40,58,.2);background:rgba(40,40,58,.06);">stretch-limo · secondary</span>
+      <span class="ab-badge" style="color:#3a1050;border-color:rgba(58,16,80,.2);background:rgba(58,16,80,.06);">grape-dim · emphasis</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">§ 05 · the abalone theme — full specification</div>
+
+<div class="ab-spec">
+  <div class="ab-spec-title">Abalone <em>Theme</em> · v2.32</div>
+  <div class="ab-spec-sub">A complete surface register built on the nacre sub-palette, borrowing lite-tones from the dark grammar for accent duty, and anchored by the grape-black ink (#12081a) as the most contrasting ink available from the Paper Layer's augmented register. Eight grounds, one deep ink, one secondary ink, eight borrowed accents.</div>
+  <div class="ab-spec-grid">
+    <div class="ab-spec-cell">
+      <div class="ab-spec-cell-label">Grounds (nacre)</div>
+      <div class="ab-spec-cell-content">
+        usquebaugh #ffe5d0 — body field<br>
+        glaze #edffff — cover / reversal<br>
+        aqua-vitae #edfff8 — exhibit<br>
+        laitance #fefcfe — annotation / S-resolved<br>
+        quire #fff6ff — micro-label<br>
+        willow #d5e9db — index<br>
+        deckle #dbccd7 — summary<br>
+        deckle-dim #c0acc1 — colophon
+      </div>
+    </div>
+    <div class="ab-spec-cell">
+      <div class="ab-spec-cell-label">Inks (paper layer)</div>
+      <div class="ab-spec-cell-content">
+        --N-ink-grape #12081a — primary<br>
+        most contrasting available<br>
+        violet undertone · portal ancestry<br>
+        ~19.4:1 vs cloud-dancer<br>
+        <br>
+        --stretch-limo #28283a — secondary<br>
+        annotations · captions · footnotes<br>
+        ~13.6:1 vs cloud-dancer
+      </div>
+    </div>
+    <div class="ab-spec-cell">
+      <div class="ab-spec-cell-label">Accents (lite-tone borrowings)</div>
+      <div class="ab-spec-cell-content">
+        grape-lt #9b58c8 — portal signal<br>
+        dragonfly #5ab0c8 — legal<br>
+        cosmic #9898c8 — analytical<br>
+        citron #d4c06a — structure<br>
+        rivulet #38c8b8 — confirmed<br>
+        bordeaux #b87898 — narrative<br>
+        regatta-lt #6080c8 — domain<br>
+        nantucket #7ab8d8 — chain flow
+      </div>
+    </div>
+    <div class="ab-spec-cell">
+      <div class="ab-spec-cell-label">Dark surfaces</div>
+      <div class="ab-spec-cell-content">
+        --AB-bg #0a0910 — ink base<br>
+        --AB-surface #0e0c15 — violet-shifted<br>
+        --AB-surface2 #15101e — raised panels<br>
+        --AB-rule rgba(192,172,193,.10)<br>
+        --AB-rule-strong rgba(192,172,193,.18)<br>
+        <br>
+        Surface shift: +4R +0G +5B from --ink<br>
+        A violet ghost — grape-bg at 5% opacity
+      </div>
+    </div>
+    <div class="ab-spec-cell">
+      <div class="ab-spec-cell-label">Strikes (nacre gradient forms)</div>
+      <div class="ab-spec-cell-content">
+        I · Thermal — usquebaugh→glaze→aqua-vitae<br>
+        II · Strata — laitance→quire→deckle→deckle-dim<br>
+        III · Tricolour — aqua-vitae→laitance→usquebaugh<br>
+        IV · Full sweep — all nine · 1 per document<br>
+        V · Violet arc — quire→laitance→deckle-dim<br>
+        VI · Warm arc — usquebaugh→quire→deckle
+      </div>
+    </div>
+    <div class="ab-spec-cell">
+      <div class="ab-spec-cell-label">The grape thread</div>
+      <div class="ab-spec-cell-content">
+        deckle-dim: 15% pulled toward grape-dim<br>
+        N-ink-grape: drawn from grape-bg<br>
+        AB-surface: violet-shifted toward grape-bg<br>
+        grape-lt: primary accent tone<br>
+        <br>
+        The ink and the bedrock are related.<br>
+        The same ancestry, two ends of the shell.
+      </div>
+    </div>
+  </div>
+  <div class="ab-spec-note">
+    Pigeonhole Rule applies: Strike IV (full sweep) — one per document, the single most significant structural element.<br>
+    Accents never fill: lite-tones appear as text colour, eyebrow tint, pip fill on dark surfaces only. Nacre grounds hold all fill decisions.<br>
+    Grape-black ink (#12081a) is primary on all nacre grounds. Stretch-limo (#28283a) is secondary (annotations, captions, running heads). Grape-dim (#3a1050) for emphasis spans only.<br>
+    The violet surface shift (--AB-surface #0e0c15) is the dark-mode signature of the Abalone theme — present but not announced.
+  </div>
+</div>
+
+</div>
